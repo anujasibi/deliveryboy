@@ -87,6 +87,7 @@ public class MainUI extends AppCompatActivity implements NavigationView.OnNaviga
     private TabAdapter adapter;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    Switch switchTop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,8 +97,8 @@ public class MainUI extends AppCompatActivity implements NavigationView.OnNaviga
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         adapter = new TabAdapter(getSupportFragmentManager());
-        adapter.addFragment(new Tab1Fragment(), "Tab 1");
-        adapter.addFragment(new Tab2Fragment(), "Tab 2");
+        adapter.addFragment(new Tab1Fragment(), "Upcoming Delivery");
+        adapter.addFragment(new Tab2Fragment(), "Delivery History");
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
 
@@ -252,25 +253,50 @@ public class MainUI extends AppCompatActivity implements NavigationView.OnNaviga
         getMenuInflater().inflate(R.menu.main, menu);
         final MenuItem item = (MenuItem) menu.findItem(R.id.switchT);
         item.setActionView(R.layout.toggle_top_button);
+        status = (TextView) findViewById(R.id.ondt);
+        switchTop = item.getActionView().findViewById(R.id.switchTop);
+        if (Global.flag){
+//            status = (TextView) findViewById(R.id.ondt);
+//            status.setText("online");
+            switchTop.setChecked(true);
+        }
+        if (!Global.flag){
+//            status = (TextView) findViewById(R.id.ondt);
+//            status.setText("offline");
+            switchTop.setChecked(false);
+        }
 
-        Switch switchTop = item.getActionView().findViewById(R.id.switchTop);
 
         switchTop.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView,
                                          boolean isChecked) {
 
-                if (isChecked) {
-                    status = (TextView) findViewById(R.id.ondt);
-                    status.setText("online");
-                    sessionManager.setID(status.getText().toString());
-                    callonline();
 
-                } else {
-                    status = (TextView) findViewById(R.id.ondt);
-                    status.setText("offline");
-                    sessionManager.setID(status.getText().toString());
-                    callonline();
+                if (isChecked) {
+
+                        status = findViewById(R.id.ondt);
+                        status.setText("online");
+                        sessionManager.setID(status.getText().toString());
+                        //sessionManager.setCard(true);
+                        callonline();
+
+
+
+                } if (!isChecked){
+
+
+
+                        status = findViewById(R.id.ondt);
+                        status.setText("offline");
+                        Toast.makeText(MainUI.this,"Please be online to get the request",Toast.LENGTH_SHORT).show();
+                        sessionManager.setID(status.getText().toString());
+                        //sessionManager.setCard(false);
+                        callonline();
+
+
+
+
 
                 }
             }
@@ -326,6 +352,7 @@ public class MainUI extends AppCompatActivity implements NavigationView.OnNaviga
     // show or hide the fab
 
     private void callonline(){
+        Toast.makeText(MainUI.this,"",Toast.LENGTH_SHORT).show();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLline,
                 new Response.Listener<String>() {
                     @Override
@@ -336,7 +363,7 @@ public class MainUI extends AppCompatActivity implements NavigationView.OnNaviga
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             String ot = jsonObject.optString("message");
-                            String status=jsonObject.optString("code");
+                            String status1=jsonObject.optString("code");
                             String token=jsonObject.optString("Token");
 
 
@@ -344,11 +371,28 @@ public class MainUI extends AppCompatActivity implements NavigationView.OnNaviga
 
 
                             Log.d("otp","mm"+token);
-                            Log.d("code","mm"+status);
-                            if(status.equals("200")){
-                                Toast.makeText(MainUI.this, "Successful", Toast.LENGTH_LONG).show();
-                               /* Intent intent = new Intent(Login.this, MainUI.class);
-                                startActivity(intent);*/
+                            Log.d("code","mm"+status1);
+                            if(status1.equals("200")){
+                               // Toast.makeText(MainUI.this, "Successful", Toast.LENGTH_LONG).show();
+//                                Intent intent = new Intent(Login.this, MainUI.class);
+//                                startActivity(intent);
+                                if (status.getText().toString().equals("offline")){
+                                    switchTop.setChecked(false);
+                                    sessionManager.setCard(false);
+                                    Global.flag = false;
+                                    status.setText("offline");
+
+                                    startActivity(new Intent(MainUI.this,MainUI.class));
+                                    Toast.makeText(MainUI.this,"Please be online to get the request",Toast.LENGTH_SHORT).show();
+                                }
+                                if (status.getText().toString().equals("online")){
+                                    switchTop.setChecked(true);
+                                    sessionManager.setCard(true);
+                                    Global.flag = true;
+                                    status.setText("online");
+                                    startActivity(new Intent(MainUI.this,MainUI.class));
+                                }
+
                             }
                             else{
                                 Toast.makeText(MainUI.this, "Failed."+ot, Toast.LENGTH_LONG).show();

@@ -9,6 +9,24 @@ public class SessionManager {
     private SharedPreferences sharedPreferences;
 
 
+    public boolean card;
+
+    public SharedPreferences getSharedPreferences() {
+        return sharedPreferences;
+    }
+
+    public void setSharedPreferences(SharedPreferences sharedPreferences) {
+        this.sharedPreferences = sharedPreferences;
+    }
+
+    public boolean isCard() {
+        return card;
+    }
+
+    public void setCard(boolean card) {
+        this.card = card;
+    }
+
     public SessionManager(Context context){
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
     }

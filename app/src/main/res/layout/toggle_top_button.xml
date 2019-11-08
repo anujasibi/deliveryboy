@@ -16,8 +16,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/switchTop"
         android:textSize="10sp"
-        android:text="Off Duty"
         android:textColor="#fff"
+        android:visibility="gone"
         android:id="@+id/ondt"
         />
 </RelativeLayout>

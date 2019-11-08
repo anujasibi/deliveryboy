@@ -8,6 +8,7 @@ public class Global {
     public static ArrayList<String> discount = new ArrayList<>();
     public static String price="null";
     public static String total="0";
+    public static boolean flag = false;
 
 
 
