@@ -63,8 +63,8 @@ public class upcomingdetails extends AppCompatActivity {
         String pay=bundle.getString("payment");
         payment.setText(pay);
 
-        String sp=bundle.getString("split");
-        Picasso.with(context).load(Global.BASE_URL+"media/"+sp).into(imageView);
+        String sp=bundle.getString("image");
+        Picasso.with(context).load(sp).into(imageView);
 
 
 

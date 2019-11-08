@@ -28,6 +28,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -70,6 +71,7 @@ public class Tab1Fragment extends Fragment {
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(getContext(),"image"+split,Toast.LENGTH_SHORT).show();
                 Intent i=new Intent(getContext(),upcomingdetails.class);
                 i.putExtra("shopname",shop);
                 i.putExtra("pick",pick);
@@ -143,12 +145,12 @@ public class Tab1Fragment extends Fragment {
                             payment_method=jsonObject1.getString("payment_method");
                             String images1 = jsonObject1.getString("product_image");
                             String[] seperated = images1.split(",");
-                             split = seperated[0].replace("[", "");
 
-
-
-
-
+                            ArrayList<String>images = new ArrayList<>();
+                            for (int i =0;i<seperated.length;i++){
+                                images.add(Global.BASE_URL+seperated[i].replace("[","").replace("[",""));
+                            }
+                            split=images.get(0);
 
 
                             Log.d("DATA","mm"+dar);
