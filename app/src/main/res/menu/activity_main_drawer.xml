@@ -11,6 +11,11 @@
             android:icon="@drawable/home"
             android:title="Photos" />
 
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/logout"
+            android:title="Logout" />
+
     </group>
 
 

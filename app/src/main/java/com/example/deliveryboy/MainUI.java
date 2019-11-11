@@ -3,6 +3,7 @@ package com.example.deliveryboy;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -82,6 +84,7 @@ public class MainUI extends AppCompatActivity implements NavigationView.OnNaviga
 
     // flag to load home fragment when user presses back key
     private boolean shouldLoadHomeFragOnBackPress = true;
+    boolean doubleBackToExitPressedOnce = false;
     private Handler mHandler;
 
     private TabAdapter adapter;
@@ -197,8 +200,12 @@ public class MainUI extends AppCompatActivity implements NavigationView.OnNaviga
                         break;
                     case R.id.nav_photos:
                         //startActivity(new Intent(MainActivity.this,TripHistory.class));
-                        Toast.makeText(MainUI.this,"You clicked home",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainUI.this,"You clicked Photos",Toast.LENGTH_SHORT).show();
                         break;
+                    case R.id.logout:
+                        sessionManager.setTokens(null);
+                        startActivity(new Intent(MainUI.this, MainActivity.class));
+                        finish();
 
                     default:
                         navItemIndex = 0;
@@ -222,6 +229,7 @@ public class MainUI extends AppCompatActivity implements NavigationView.OnNaviga
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -242,7 +250,23 @@ public class MainUI extends AppCompatActivity implements NavigationView.OnNaviga
             }
         }
 
-        super.onBackPressed();
+        if (doubleBackToExitPressedOnce) {
+            finishAffinity();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(MainUI.this,"Press again to exit",Toast.LENGTH_SHORT).show();
+
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
+
     }
 
     @Override
@@ -439,5 +463,7 @@ public class MainUI extends AppCompatActivity implements NavigationView.OnNaviga
 
 
     }
+
+
 
 }

@@ -124,19 +124,19 @@
                             android:layout_marginRight="30dp" />
 
                         <TextView
+                            android:id="@+id/pickup"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_below="@+id/te"
+                            android:layout_centerHorizontal="true"
                             android:layout_marginTop="10dp"
-                            android:id="@+id/pickup"
-                          android:layout_below="@+id/te"
-                            android:gravity="center_horizontal|center_vertical"
-                            android:layout_centerInParent="true"
-                            android:drawableRight="@drawable/navigation"
                             android:layout_marginEnd="30dp"
-                            android:textColor="#5C25B7"
-                            android:textStyle="bold"
+                            android:layout_marginRight="30dp"
+                            android:drawableRight="@drawable/navigation"
+                            android:gravity="center_horizontal|center_vertical"
                             android:text="Click here to get the Pickup location   "
-                            android:layout_marginRight="30dp" />
+                            android:textColor="#5C25B7"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -293,7 +293,39 @@
                             android:layout_marginEnd="30dp"
                             android:textColor="#fff"
                             android:textStyle="bold"
-                            android:text="Start the delivery Process"
+                            android:text="Pickup the product"
+                            android:layout_marginRight="30dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="#5c25b7"
+                            android:layout_marginTop="30dp"
+                            android:id="@+id/deliversub"
+                            android:visibility="gone"
+                            android:layout_below="@+id/pay"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:layout_centerInParent="true"
+                            android:layout_marginEnd="30dp"
+                            android:textColor="#fff"
+                            android:textStyle="bold"
+                            android:text="Deliver the product"
+                            android:layout_marginRight="30dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="#5c25b7"
+                            android:layout_marginTop="30dp"
+                            android:id="@+id/paysub"
+                            android:visibility="gone"
+                            android:layout_below="@+id/pay"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:layout_centerInParent="true"
+                            android:layout_marginEnd="30dp"
+                            android:textColor="#fff"
+                            android:textStyle="bold"
+                            android:text="Confirm Payment"
                             android:layout_marginRight="30dp" />
 
 

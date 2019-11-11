@@ -37,7 +37,7 @@ public class Tab1Fragment extends Fragment {
     TextView pickup,delivery,shopname,productname,address,order_status;
     SessionManager sessionManager;
     CardView cardView;
-    public String shop,pick,addres,product,delvery_charge,cancellation_charge,total_amount,payment_method,split;
+    public String shop,pick,addres,product,delvery_charge,cancellation_charge,total_amount,payment_method,split,ids;
 
 
     private String URLline = Global.BASE_URL+"api_delivery_boy/upcoming_delivery/";
@@ -82,6 +82,7 @@ public class Tab1Fragment extends Fragment {
                 i.putExtra("totcharge",total_amount);
                 i.putExtra("payment",payment_method);
                 i.putExtra("image",split);
+                i.putExtra("id",ids);
                 startActivity(i);
 
             }
@@ -125,6 +126,10 @@ public class Tab1Fragment extends Fragment {
 
 
                            JSONObject jsonObject1=dar.optJSONObject(0);
+
+                           ids=jsonObject1.getString("id");
+
+                            Log.d("DATA","mm"+ids);
 
                             shop=jsonObject1.getString("shop_name");
 
