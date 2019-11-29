@@ -124,6 +124,14 @@ public class Tab1Fragment extends Fragment {
 
                             JSONArray dar=jsonObject.getJSONArray("data");
 
+                            if(dar.length()==0){
+                                cardView.setVisibility(View.GONE);
+                                Toast.makeText(getContext(),"Currently there is no upcoming deliveries",Toast.LENGTH_SHORT).show();
+                            }
+                            if(dar.length()!=0){
+
+
+
 
                            JSONObject jsonObject1=dar.optJSONObject(0);
 
@@ -169,6 +177,7 @@ public class Tab1Fragment extends Fragment {
                                 Toast.makeText(getContext(), "Failed."+ot, Toast.LENGTH_LONG).show();
 
 
+                            }
                             }
 
                         } catch (JSONException e) {

@@ -10,6 +10,7 @@
         android:layout_height="120dp"
         android:layout_marginTop="8dp"
         android:layout_marginLeft="8dp"
+        android:visibility="gone"
         android:layout_marginRight="8dp"
         android:elevation="5dp"
         android:padding="10dp"
@@ -45,7 +46,7 @@
 
                 <TextView
                     android:id="@+id/shop_name"
-                    android:layout_width="100dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="10dp"
                     android:text="Shop Name"
@@ -67,7 +68,6 @@
                     android:id="@+id/orderType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
                     android:paddingLeft="10dp"
