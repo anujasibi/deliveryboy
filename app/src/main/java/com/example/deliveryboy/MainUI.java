@@ -102,6 +102,7 @@ public class MainUI extends AppCompatActivity implements NavigationView.OnNaviga
         adapter = new TabAdapter(getSupportFragmentManager());
         adapter.addFragment(new Tab1Fragment(), "Upcoming Delivery");
         adapter.addFragment(new Tab2Fragment(), "Delivery History");
+        adapter.addFragment(new Tab3Fragment(),"Pending Delivery");
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
 

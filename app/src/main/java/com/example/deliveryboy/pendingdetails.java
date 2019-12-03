@@ -35,7 +35,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class upcomingdetails extends AppCompatActivity {
+public class pendingdetails extends AppCompatActivity {
 
     TextView pick,delivery,product,deliveryamount,canamount,totalamo,shop,payment,pickup,deli,submit,deliverysub,paysub;
     ImageView imageView,back;
@@ -122,11 +122,11 @@ public class upcomingdetails extends AppCompatActivity {
                         "Yes",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                               status="1";
-                               delivernew();
+                                status="1";
+                                delivernew();
 
-                              //  submit.setVisibility(View.GONE);
-                            //    deliverysub.setVisibility(View.VISIBLE);
+                                //  submit.setVisibility(View.GONE);
+                                //    deliverysub.setVisibility(View.VISIBLE);
                                 dialog.cancel();
                             }
                         });
@@ -229,19 +229,19 @@ public class upcomingdetails extends AppCompatActivity {
         String sp=bundle.getString("image");
         Picasso.with(context).load(sp).into(imageView);
 
-         id=bundle.getString("id");
+        id=bundle.getString("id");
 
-         data=bundle.getString("data");
-         Log.d("hhhhhhhhhhhhhhhh","mm"+data);
+        data=bundle.getString("data");
+        Log.d("hhhhhhhhhhhhhhhh","mm"+data);
 
 
         GeocodingLocation locationAddress = new GeocodingLocation();
         locationAddress.getAddressFromLocation(pick.getText().toString(),
-                getApplicationContext(), new upcomingdetails.GeocoderHandler());
+                getApplicationContext(), new pendingdetails.GeocoderHandler());
 
         GeocodingLocation delivry = new GeocodingLocation();
         delivry.getAddressFromLocation(delivery.getText().toString(),
-                getApplicationContext(), new upcomingdetails.GeocoderHandler1());
+                getApplicationContext(), new pendingdetails.GeocoderHandler1());
 
 
 
@@ -252,12 +252,12 @@ public class upcomingdetails extends AppCompatActivity {
             }
         });
 
-       deli.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               viewOnMap(source_lat,source_lng);
-           }
-       });
+        deli.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewOnMap(source_lat,source_lng);
+            }
+        });
 
 
 
@@ -279,7 +279,7 @@ public class upcomingdetails extends AppCompatActivity {
                     Log.d("longitude","mm"+lonh);
                     source_lat = lat;
                     source_lng = lonh;
-                    Toast.makeText(upcomingdetails.this,source_lat+source_lng,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(pendingdetails.this,source_lat+source_lng,Toast.LENGTH_SHORT).show();
                     //  sessionManager.setDestLong(lonh);
                     break;
                 default:
@@ -307,7 +307,7 @@ public class upcomingdetails extends AppCompatActivity {
                     Log.d("longitude","mm"+lonh);
                     source_lat = lat;
                     source_lng = lonh;
-                    Toast.makeText(upcomingdetails.this,source_lat+source_lng,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(pendingdetails.this,source_lat+source_lng,Toast.LENGTH_SHORT).show();
                     //  sessionManager.setDestLong(lonh);
                     break;
                 default:
@@ -335,7 +335,7 @@ public class upcomingdetails extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                       // dialog.dismiss();
+                        // dialog.dismiss();
                         //  Toast.makeText(Login.this,response,Toast.LENGTH_LONG).show();
                         //parseData(response);
                         try {
@@ -351,16 +351,16 @@ public class upcomingdetails extends AppCompatActivity {
 
                             Log.d("code","mm"+status);
                             if(status.equals("200")){
-                                Toast.makeText(upcomingdetails.this, "Successfully Picked Up", Toast.LENGTH_LONG).show();
+                                Toast.makeText(pendingdetails.this, "Successfully Picked Up", Toast.LENGTH_LONG).show();
                                 submit.setVisibility(View.GONE);
                                 deliverysub.setVisibility(View.VISIBLE);
 
                             }
                             if(status.equals("203")){
-                                Toast.makeText(upcomingdetails.this, "Failed to Pickup."+ot, Toast.LENGTH_LONG).show();
+                                Toast.makeText(pendingdetails.this, "Failed to Pickup."+ot, Toast.LENGTH_LONG).show();
                             }
                             else{
-                                Toast.makeText(upcomingdetails.this, "Failed."+ot, Toast.LENGTH_LONG).show();
+                                Toast.makeText(pendingdetails.this, "Failed."+ot, Toast.LENGTH_LONG).show();
                             }
 
                         } catch (JSONException e) {
@@ -374,13 +374,13 @@ public class upcomingdetails extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(upcomingdetails.this,error.toString(),Toast.LENGTH_LONG).show();
+                        Toast.makeText(pendingdetails.this,error.toString(),Toast.LENGTH_LONG).show();
                     }
                 }){
             @Override
             protected Map<String,String> getParams(){
                 Map<String,String> params = new HashMap<String, String>();
-                params.put("delivery_id",Global.data);
+                params.put("delivery_id",Global.id);
                 params.put("status",status);
                 return params;
             }
@@ -419,18 +419,18 @@ public class upcomingdetails extends AppCompatActivity {
 
                             Log.d("code","mm"+status);
                             if(status.equals("200")){
-                                Toast.makeText(upcomingdetails.this, "Successful", Toast.LENGTH_LONG).show();
+                                Toast.makeText(pendingdetails.this, "Successful", Toast.LENGTH_LONG).show();
                                 if(pays.equals("COD")){
-                                  paysub.setVisibility(View.VISIBLE);
+                                    paysub.setVisibility(View.VISIBLE);
                                 }
                                 if((!pays.equals("COD"))){
-                                   deliverysub.setText("COMPLETED");
+                                    deliverysub.setText("COMPLETED");
                                 }
 
 
                             }
                             else{
-                                Toast.makeText(upcomingdetails.this, "Failed."+ot, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(pendingdetails.this, "Failed."+ot, Toast.LENGTH_SHORT).show();
 
 
                             }
@@ -446,13 +446,13 @@ public class upcomingdetails extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(upcomingdetails.this,error.toString(),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(pendingdetails.this,error.toString(),Toast.LENGTH_SHORT).show();
                     }
                 }){
             @Override
             protected Map<String,String> getParams(){
                 Map<String,String> params = new HashMap<String, String>();
-                params.put("delivery_id",Global.data);
+                params.put("delivery_id",Global.id);
                 params.put("deliver_status",status);
                 return params;
             }
@@ -490,13 +490,13 @@ public class upcomingdetails extends AppCompatActivity {
 
                             Log.d("code","mm"+status);
                             if(status.equals("200")){
-                                Toast.makeText(upcomingdetails.this, "Successful", Toast.LENGTH_SHORT).show();
-                               paysub.setText("COMPLETED");
+                                Toast.makeText(pendingdetails.this, "Successful", Toast.LENGTH_SHORT).show();
+                                paysub.setText("COMPLETED");
 
 
                             }
                             else{
-                                Toast.makeText(upcomingdetails.this, "Failed."+ot, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(pendingdetails.this, "Failed."+ot, Toast.LENGTH_SHORT).show();
 
 
                             }
@@ -512,13 +512,13 @@ public class upcomingdetails extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(upcomingdetails.this,error.toString(),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(pendingdetails.this,error.toString(),Toast.LENGTH_SHORT).show();
                     }
                 }){
             @Override
             protected Map<String,String> getParams(){
                 Map<String,String> params = new HashMap<String, String>();
-                params.put("delivery_id",Global.data);
+                params.put("delivery_id",Global.id);
                 params.put("payment_status",status);
                 return params;
             }
@@ -556,7 +556,7 @@ public class upcomingdetails extends AppCompatActivity {
 
                             Log.d("code","mm"+status);
                             if(status.equals("200")){
-                                Toast.makeText(upcomingdetails.this, "Successfuldfghjkldfghjkl;sdfghjk", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(pendingdetails.this, "Successfuldfghjkldfghjkl;sdfghjk", Toast.LENGTH_SHORT).show();
                                 if(ot.equals("Delivered")){
                                     submit.setVisibility(View.GONE);
                                     deliverysub.setVisibility(View.GONE);
@@ -566,7 +566,7 @@ public class upcomingdetails extends AppCompatActivity {
 
                             }
                             else{
-                                Toast.makeText(upcomingdetails.this, "Failed."+ot, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(pendingdetails.this, "Failed."+ot, Toast.LENGTH_SHORT).show();
 
 
                             }
@@ -582,7 +582,7 @@ public class upcomingdetails extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(upcomingdetails.this,error.toString(),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(pendingdetails.this,error.toString(),Toast.LENGTH_SHORT).show();
                     }
                 }){
             @Override
