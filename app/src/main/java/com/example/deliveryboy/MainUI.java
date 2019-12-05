@@ -201,7 +201,7 @@ public class MainUI extends AppCompatActivity implements NavigationView.OnNaviga
                         break;
                     case R.id.nav_photos:
                         //startActivity(new Intent(MainActivity.this,TripHistory.class));
-                        Toast.makeText(MainUI.this,"You clicked Photos",Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(MainUI.this, changepassword.class));
                         break;
                     case R.id.logout:
                         sessionManager.setTokens(null);

@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     String device_id = null;
     Activity activity = this;
     ImageView imageView;
+    TextView forget;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +74,16 @@ public class MainActivity extends AppCompatActivity {
         token_firebase = FirebaseInstanceId.getInstance().getToken();
         Log.d("tokkkken","lhykhiyh"+token_firebase);
         imageView=findViewById(R.id.img);
+
+
+        forget=findViewById(R.id.forgot);
+
+        forget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(context,ForgotPassword.class));
+            }
+        });
 
         dialog=new ProgressDialog(MainActivity.this,R.style.MyAlertDialogStyle);
         sessionManager = new SessionManager(this);

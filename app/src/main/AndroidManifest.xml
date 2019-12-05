@@ -14,6 +14,10 @@
         <activity android:name=".HomeScreen" />
         <activity android:name=".VerifyOtp" />
         <activity android:name=".MainActivity" />
+        <activity android:name=".forgototp" />
+        <activity android:name=".changepassword" />
+        <activity android:name=".ResetPassword" />
+        <activity android:name=".ForgotPassword" />
         <activity android:name=".HistoryDetails" />
         <activity android:name=".upcomingdetails" />
         <activity android:name=".Tab2Fragment" />
